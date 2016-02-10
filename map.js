@@ -6,18 +6,18 @@ $(function () {
     var nbCaseArme = 4;
     var nbCaseBloquante = 6;
 
-
-
-
+    
+    
+    
+    var ratioHauteurCase = 1.3;
     /************************************************/
     var boxTotal = $('#box');
-    var longBox = Math.floor(boxTotal.innerWidth());
-
+    var longBox = Math.floor(boxTotal.innerWidth());    
 
     grilleCreation(nbCase);
-    //creationSpritePlayer();
-    //creationSpriteCaseBonus(nbCaseArme);
-    //creationSpriteCaseBlocante(nbCaseBloquante);
+    creationSpritePlayer();
+    creationSpriteCaseBonus(nbCaseArme);
+    creationSpriteCaseBlocante(nbCaseBloquante);
 
     //fonction de creation de la grille
     function grilleCreation(nbCase) {
@@ -28,8 +28,9 @@ $(function () {
             for (j = 0; j < nbCase; j++) {
                 var div = document.createElement('div');
                 div.className = 'case';
-                div.style.width = parseInt(longCase) + 'px';
-                div.style.lineHeight = parseInt(longCase / 1.5) + 'px';
+                div.style.width = longCase + 'px';
+                div.style.lineHeight = Math.floor(longCase/ratioHauteurCase) + 'px';
+                div.style.height = Math.floor(longCase/ratioHauteurCase) + 'px';
                 div.innerHTML = j;
                 boxTotal.append(div);
             }
@@ -40,39 +41,50 @@ $(function () {
         var player = joueur1;
         var i = 0;
         while (i < 2) {
-            domDivSprit(player);
+            domDivSprite(player);
             player = joueur2;
             i++;
         }
     }
     
-    function creationSpriteCaseBonus(nb){
-        for (i=0;i<nb;i++){
-            var arme = Object.create(boiteArmement);
+    function creationSpriteCaseBonus(nb) {
+    for (i = 0; i < nb; i++) {
+        var arme = Object.create(boiteArmement);
+        if (i >= nb / 2) {
             arme.initBoite('mario');
-           domDivSprit(arme); 
+            domDivSprite(arme);
+        } else {
+            arme.initBoite('sonic');
+            domDivSprite(arme);
         }
+
     }
+}
     
     function creationSpriteCaseBlocante(nb){
         for (i=0;i<nb;i++){
             var block = Object.create(caseBlocante);            
-           domDivSprit(block); 
+           domDivSprite(block); 
         }
     }
 
-    function domDivSprit(type){
+    function domDivSprite(type){
         var longPersoBox = Math.floor(longBox / nbCase) - 2;
-            var divPerso = document.createElement('div');
-            divPerso.style.width = parseInt(longPersoBox) + 'px';
+            var divSprite = document.createElement('div');
+            divSprite.className = 'case ' + type.nom;
+            divSprite.style.width = longPersoBox + 'px';
+            divSprite.style.lineHeight = Math.floor(longPersoBox/ratioHauteurCase) + 'px';
+            divSprite.style.height = Math.floor(longPersoBox/ratioHauteurCase)  + 'px';
 
-            var imgPerso = document.createElement('img');
-            imgPerso.src = type.spriteSrc;
-            imgPerso.width = longPersoBox;
-            imgPerso.height = longPersoBox;
-
-            divPerso.appendChild(imgPerso);
-            boxTotal.append(divPerso);
+            var img = document.createElement('img');
+            img.src = type.spriteSrc;
+            img.width = longPersoBox;
+            img.height = Math.floor(longPersoBox/ratioHauteurCase);
+        
+            
+            divSprite.appendChild(img);
+            boxTotal.append(divSprite);
+            $('div.case:first').remove();
     }
     
     function placementAleatoire() {

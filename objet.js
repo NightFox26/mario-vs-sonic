@@ -34,12 +34,14 @@ joueur2.initPerso('sonic',100,10);
 /*****************************************/
 /**********class case armement************/
 /*****************************************/
-var boiteArmement = {
+var boiteArmement = {   
     initBoite : function(hero){
         if (hero === 'mario'){
+            this.nom = 'MarioBox'
             this.spriteSrc = 'sprite/bonusMario.png';
         }
         else{
+            this.nom = 'SonicBox'
             this.spriteSrc = 'sprite/bonusSonic.png';
         }
     }   
@@ -48,5 +50,6 @@ var boiteArmement = {
 /************class case blocante***********/
 /******************************************/
 var caseBlocante = {
+    nom: 'PlanteCarnivor',
     spriteSrc : 'sprite/bloc.png',
 }
