@@ -22,24 +22,26 @@
         .starter-template
         {padding:40px 15px;text-align:center;}
         
-        .case{            
-            text-align: center;            
-            border:1px rgb(54,54,54) solid;            
-            /*background-color: rgba(0,255,0,0.2);*/
-            display:inline-block;            
-        }
-        
-        .bg{             
+        table{
+            margin:auto;
+            width:80%; 
             border:2px groove black;
             background-image: url(sprite/bg2.jpg);            
             background-size: 100% 100%;
-        } 
-        #box{
-            margin:auto;
-            width:80%; 
-            color:transparent;
+            border-collapse: collapse;
         }
         
+        td{             
+            text-align: center;            
+            border:1px rgb(54,54,54) solid;            
+            /*background-color: rgba(0,255,0,0.2);*/
+           
+        }
+        
+        .depPossible {
+            background-color:rgba(0,0,255,0.3);
+            border-color:dodgerblue;
+        }
     
     </style>
 
@@ -73,17 +75,18 @@
     </nav>
 
     <div class="container" >
-        <div id = 'box' class = 'bg'>           
-            
-            
+        <table>
         
-        </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        </table>
+    </div>    
+    
+    <script src="javascript/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="map.js"></script> 
-    <script src="objet.js"></script>
-    <script src="move.js"></script>        
+    <script src="configurateur.js"></script>
+    <script src="javascript/sdk.js"></script>
+    <script src="javascript/objet.js"></script>
+    <script src="javascript/map.js"></script>    
+    <script src="javascript/move.js"></script>    
+    <script src='javascript/anim.js'></script>        
 </body>
 </html>
