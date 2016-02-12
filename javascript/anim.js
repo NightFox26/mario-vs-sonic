@@ -1,6 +1,5 @@
 function spriteClignote(name) {
-    $('img.' + name).fadeOut(1000);
-    $('img.' + name).fadeIn(1000);
+    $('img.' + name).fadeOut(1000).fadeIn(1000);   
     spriteClignote(name);
 }
 

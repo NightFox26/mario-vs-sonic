@@ -75,7 +75,7 @@
             cases = $('td');
 
         for (i; i < long; i++) {
-            if (array[i][2] !== 'vide') {
+            if (array[i][2] !== 'vide') {                
                 var img = document.createElement('img');
                 img.className = array[i][2].nom;
                 img.src = array[i][2].spriteSrc;

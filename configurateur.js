@@ -5,7 +5,7 @@
         nbCaseVertical = 10,
         
         nbCaseArme = 4,
-        nbCaseBloquante = 12,
+        nbCaseBloquante = 30,
         
         nbCaseDeplacementPerso = 3,
 
