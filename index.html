@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Starter Template for Bootstrap 3.3.6</title>
+    <meta name="description" content="Un jeux de baston en tre Mario et Sonic">
+    <meta name="author" content="Nightfox26">
+    <title>Mario vs Sonic</title>
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
@@ -40,7 +40,27 @@
         
         .depPossible {
             background-color:rgba(0,0,255,0.3);
-            border-color:dodgerblue;
+            border-color:dodgerblue;           
+        }
+        
+        span[class*="turn sonic"] {
+            color : blue;
+            text-shadow: 1px 1px 4px black;
+            background-color: aliceblue;
+            font-size: 1.5em;
+            border: 1px black solid;
+            border-radius: 10px;
+            box-shadow: 3px 3px 20px blue;
+        }
+        
+        span[class*="turn mario"] {
+            color : red;
+            text-shadow: 1px 1px 4px red;
+            background-color: aliceblue;
+            font-size: 1.5em;
+            border: 1px black solid;
+            border-radius: 10px;
+            box-shadow: 3px 3px 20px red;
         }
         
     </style>
@@ -60,6 +80,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class = 'turn'></span>
                 </button>
                 <a class="navbar-brand" href="#">Mario vs Sonic</a>
             </div>
@@ -67,10 +88,13 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Restart</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about" id ='about'>About</a></li>
+                    <li><a href="#contact" id = 'contact'>Contact</a></li>
+                    <span class = 'turn' style="margin-left:50px"></span>
                 </ul>
+               
             </div><!--.nav-collapse -->
+            
         </div>
     </nav>
 
@@ -87,6 +111,7 @@
     <script src="javascript/objet.js"></script>
     <script src="javascript/map.js"></script>    
     <script src="javascript/move.js"></script>    
-    <script src='javascript/anim.js'></script>        
+    <script src='javascript/anim.js'></script>
+    <script src='javascript/mainAlgo.js'></script>        
 </body>
 </html>
