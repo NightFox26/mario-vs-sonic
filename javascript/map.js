@@ -77,7 +77,14 @@
         for (i; i < long; i++) {
             if (array[i][2] !== 'vide') {                
                 var img = document.createElement('img');
-                img.className = array[i][2].nom;
+                
+                if(array[i][2].nom === 'sonic' || array[i][2].nom === 'mario'){
+                   img.id = array[i][2].nom; 
+                }
+                else{
+                   img.className = array[i][2].nom;  
+                }
+                
                 img.src = array[i][2].spriteSrc;
                 img.width = $('table').width() / nbCasehorizontales;
                 img.height = Math.floor(htScreen / (nbCaseVertical * 1.3));

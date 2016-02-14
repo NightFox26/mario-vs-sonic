@@ -31,7 +31,7 @@
             border-collapse: collapse;
         }
         
-        td{             
+        td{              
             text-align: center;            
             border:1px rgb(54,54,54) solid;            
             /*background-color: rgba(0,255,0,0.2);*/
@@ -43,25 +43,42 @@
             border-color:dodgerblue;           
         }
         
-        span[class*="turn sonic"] {
-            color : blue;
+        .atkPossible {
+            background-color:rgba(255,0,0,0.3);
+            border-color:orangered;           
+        }
+        
+         span[class*="turn"] {              
+            margin-left:50px;
+            padding:3px;            
             text-shadow: 1px 1px 4px black;
             background-color: aliceblue;
             font-size: 1.5em;
             border: 1px black solid;
             border-radius: 10px;
+            
+        }
+        
+        span[class*="turn sonic"] {           
+            color : blue;            
             box-shadow: 3px 3px 20px blue;
         }
         
-        span[class*="turn mario"] {
-            color : red;
-            text-shadow: 1px 1px 4px red;
-            background-color: aliceblue;
-            font-size: 1.5em;
-            border: 1px black solid;
-            border-radius: 10px;
+        span[class*="turn mario"] {            
+            color : red;            
             box-shadow: 3px 3px 20px red;
+        } 
+        
+        #weapon{
+            position:relative;
+            top:5px;
         }
+        
+        .pop{
+            position:relative;
+            left:50px;
+            top:-20px;
+        }        
         
     </style>
 
@@ -81,28 +98,41 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class = 'turn'></span>
-                </button>
-                <a class="navbar-brand" href="#">Mario vs Sonic</a>
+                </button>                
+                
+                <a class="navbar-brand" href="#" style='font-size:3em;' >Mario vs Sonic</a>
             </div>
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Restart</a></li>
-                    <li><a href="#about" id ='about'>About</a></li>
-                    <li><a href="#contact" id = 'contact'>Contact</a></li>
-                    <span class = 'turn' style="margin-left:50px"></span>
+                    <li><a href="#" id = 'move'>Deplacer</a></li>
+                    <li><a href="#about" id = 'atk'>Attaquer</a></li>
+                    <li><a href="#contact" id = 'end'>Fin de tour</a></li>
+                    <li class="navbar-brand"> <span class = 'turn' ></span> </li>
+                    <li ><div  ><img id='weapon' src="sprite/weapon/sonic2.png"  alt="arme"/></div></li>                  
                 </ul>
                
             </div><!--.nav-collapse -->
             
         </div>
-    </nav>
-
+    </nav>    
     <div class="container" >
         <table>
         
         </table>
-    </div>    
+    </div> 
+    
+    <span  id = 'popMario' class ='pop'  data-html="true" data-container="body" data-toggle="popover" data-placement="top"
+    title="Infos Mario" data-content='Vie : ... <br/>
+                                     Arme : ...'>  
+    </span>
+            
+    <span  id = 'popSonic' class ='pop' data-html="true" data-container="body" data-toggle="popover" data-placement="top"
+    title="Infos Sonic" data-content='Vie : ... <br/>
+                                     Arme : ...'>  
+    </span>
+             
+    
     
     <script src="javascript/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -110,8 +140,13 @@
     <script src="javascript/sdk.js"></script>
     <script src="javascript/objet.js"></script>
     <script src="javascript/map.js"></script>    
-    <script src="javascript/move.js"></script>    
+    <script src="javascript/move.js"></script>
+    <script src="javascript/atk.js"></script>   
     <script src='javascript/anim.js'></script>
-    <script src='javascript/mainAlgo.js'></script>        
+    <script src='javascript/HUD.js'></script>
+    <script src='javascript/mainAlgo.js'></script> 
+    
+       
+                         
 </body>
 </html>

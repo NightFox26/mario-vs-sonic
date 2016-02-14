@@ -9,7 +9,7 @@
         
         nbCaseDeplacementPerso = 3,
 
-    
+        porterAttaque = nbCasehorizontales,
 
 
         ratioHauteurCase = 1.3;

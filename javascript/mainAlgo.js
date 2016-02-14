@@ -7,28 +7,80 @@ $(function () {
     } else {
         player = joueur2;
     }
-    console.log(player.nom);
 
-    
-        $('#about').click(function () {
-            player = nextPLayer(player);
-            $('td').on('click', possibleMove(player));
-        });
+    var btnMove = document.getElementById('move'),
+        btnAtk = document.getElementById('atk'),
+        btnEnd = document.getElementById('end'),
+        actionDone = [],
+        turn = 0;
 
-        $('#contact').click(function () {
-            $('.depPossible').on('click', move(player))
-             
-        });
-       
-    
+    hudTurnPLayerInfo(player);
+    coloringActionMenu(actionDone);
+        
 
-    function nextPLayer(playerActif) {
-        if (playerActif == joueur1) {
-            $('span[class*="turn"]').text(joueur2.nom + ' turn').addClass(joueur2.nom).removeClass(joueur1.nom)
+    btnMove.addEventListener('click', function () {
+        if (verifMove()) {
+            possibleMove(player);
+            move(player);
+            console.log(player.nom + ' se deplace!!!');
+            actionDone.push('move');
+            coloringActionMenu(actionDone);
+        } else {
+            console.log(player.nom + ' ne peux plus bouger');
+        }
+    });
+
+    btnAtk.addEventListener('click', function () {
+        if (verifAtk()) {
+            possibleAtk(player)
+            console.log(player.nom + ' attaque!!!');
+            actionDone.push('atk');
+            coloringActionMenu(actionDone);
+        } else {
+            console.log(player.nom + ' ne peux plus attaquer');
+        }
+
+    });
+
+    btnEnd.addEventListener('click', function () {
+        turn++;
+        actionDone = [];
+        $('td').removeClass('depPossible').removeClass('atkPossible');
+
+        player = changePlayer(player);
+        console.log('tour : ' + turn);
+        console.log('c\'est a ' + player.nom + ' de jouer!');
+        hudTurnPLayerInfo(player);
+        coloringActionMenu(actionDone);
+        if (joueur1.vie <= 0 || joueur2.vie <= 0) {
+            alert('fin de partie');
+        }
+    });
+
+    function changePlayer(player) {
+        if (player.nom == 'mario') {
             return joueur2;
-        } else if (playerActif == joueur2) {
-            $('span[class*="turn"]').text(joueur1.nom + ' turn').addClass(joueur1.nom).removeClass(joueur2.nom)
+        } else {
             return joueur1;
         }
     }
+
+    function verifAtk() {
+        for (i = 0, c = actionDone.length; i < c; i++) {
+            if (actionDone[i] == 'atk') {
+                return false
+            }
+        }
+        return true;
+    }
+
+    function verifMove() {
+        for (i = 0, c = actionDone.length; i < c; i++) {
+            if (actionDone[i] == 'move') {
+                return false
+            }
+        }
+        return true;
+    }
+    
 });

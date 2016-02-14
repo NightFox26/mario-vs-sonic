@@ -1,8 +1,5 @@
 var positionPrecedente;
 
-
-
-
 function move(perso){
     $('.depPossible').click( function(){
         if ($(this).hasClass('depPossible')){        
@@ -10,45 +7,50 @@ function move(perso){
             $('td:nth(' + positionPrecedente + ')').html('');
             $('.depPossible').removeClass('depPossible');
             var image = document.createElement('img');
-            image.className = perso.nom;
+            image.id = perso.nom;
             image.src = perso.spriteSrc;
+            
             image.width = $('table').width() / nbCasehorizontales;
             image.height = Math.floor(htScreen / (nbCaseVertical * 1.3));
-
-            $('td:nth(' + index + ')').append(image);
-            $('td').off('click');
+            
+            if ($(this).children().is('.MarioBox, .SonicBox')){
+               image.style.position = 'absolute'; 
+                $('td:nth(' + index + ')').prepend(image);
+                $('td').off('click'); 
+            }
+            else{
+                image.style.position = '';
+               $('td:nth(' + index + ')').append(image);
+                $('td').off('click'); 
+            }
+            hudTurnPLayerInfo(perso);            
         }
-
     });
 }
 
-
+//fonction qui envoie a la fonction 'deplacement possible' les coordonné du personnage en court
 function possibleMove(perso){
-    $('td').click(function (){
-        var posIndex = $('td').index(this);
-        var posRow = $('tr').index($(this)[0].parentElement);    
-
-        if ($(this)[0].hasChildNodes()) {        
-            var name = $(this)[0].childNodes[0].className;
-            if (name === perso.nom) {             
-                positionPrecedente = posIndex;
-                deplacementPossible(posRow, posIndex);             
-            }        
-        }
-    });
+    $('td').removeClass('atkPossible')
+    var selectPerso = $('#'+perso.nom);
+    var posIndex = $('td').index(selectPerso.parent());
+    var posRow = $('tr').index($('td:nth('+posIndex+')').parent());
+   
+    positionPrecedente = posIndex;
+    deplacementPossible(posRow, posIndex);
 }
+
 //fonction qui affiche les cases de deplacement possible autour du personnage
 function deplacementPossible(row, caseIndex) {    
     var i = 1,
         dep = nbCaseDeplacementPerso,
         possibleCase = caseIndex,
-        inCase = $('td');
+        allCase = $('td');
     
     for (i = 1; i <= dep; i++) {
         possibleCase = caseIndex - i * nbCasehorizontales;
-        if (possibleCase > 0) {
-            if (inCase[possibleCase].hasChildNodes()) {
-                if (inCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {                    
+        if (possibleCase > 0) {            
+            if (allCase[possibleCase].hasChildNodes()) {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {                     
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -61,9 +63,9 @@ function deplacementPossible(row, caseIndex) {
 
     for (i = 1; i <= dep; i++) {
         possibleCase = caseIndex + i * nbCasehorizontales;
-        if (possibleCase < inCase.length) {
-            if (inCase[possibleCase].hasChildNodes()) {
-                if (inCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
+        if (possibleCase < allCase.length) {
+            if (allCase[possibleCase].hasChildNodes()) {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -77,8 +79,8 @@ function deplacementPossible(row, caseIndex) {
     for (i = 1; i <= dep; i++) {
         possibleCase = caseIndex - i;
         if (possibleCase >= row * nbCasehorizontales) {
-            if (inCase[possibleCase].hasChildNodes()) {
-                if (inCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
+            if (allCase[possibleCase].hasChildNodes()) {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -92,8 +94,8 @@ function deplacementPossible(row, caseIndex) {
     for (i = 1; i <= dep; i++) {
         possibleCase = caseIndex + i;
         if (possibleCase < (row + 1) * nbCasehorizontales) {
-            if (inCase[possibleCase].hasChildNodes()) {
-                if (inCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
+            if (allCase[possibleCase].hasChildNodes()) {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
