@@ -3,9 +3,9 @@ $(function () {
         player;
 
     if (playerStart == 1) {
-        player = joueur1;
+        player = joueur1;        
     } else {
-        player = joueur2;
+        player = joueur2;        
     }
 
     var btnMove = document.getElementById('move'),
@@ -14,13 +14,14 @@ $(function () {
         actionDone = [],
         turn = 0;
 
+    player.actif = true;
     hudTurnPLayerInfo(player);
     coloringActionMenu(actionDone);
     majPopOver();         
 
     btnMove.addEventListener('click', function () {
         if (verifMove()) {
-            possibleMove(player);
+            possibleMove(player);            
             move(player);
             console.log(player.nom + ' se deplace!!!');
             actionDone.push('move');
@@ -45,23 +46,25 @@ $(function () {
     btnEnd.addEventListener('click', function () {
         turn++;
         actionDone = [];
-        $('td').removeClass('depPossible').removeClass('atkPossible');
-
         player = changePlayer(player);
         console.log('tour : ' + turn);
         console.log('c\'est a ' + player.nom + ' de jouer!');
         hudTurnPLayerInfo(player);
         coloringActionMenu(actionDone);
-        //spriteClignote(player);
+        $('td').removeClass('depPossible').removeClass('atkPossible');
+        
         if (joueur1.vie <= 0 || joueur2.vie <= 0) {
             alert('fin de partie');
         }
     });
 
     function changePlayer(player) {
-        if (player.nom == 'mario') {
+        player.actif = false;
+        if (player.nom == 'mario') { 
+            joueur2.actif = true;
             return joueur2;
         } else {
+            joueur1.actif = true;
             return joueur1;
         }
     }

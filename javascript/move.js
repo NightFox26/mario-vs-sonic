@@ -1,8 +1,8 @@
 var positionPrecedente;
 
 function move(perso){
-    $('.depPossible').click( function(){
-        if ($(this).hasClass('depPossible')){        
+    $('.depPossible').click( function(){        
+        if ($(this).hasClass('depPossible') && perso.actif === true){            
             var index = $('td').index(this);
             $('td:nth(' + positionPrecedente + ')').html('');
             $('.depPossible').removeClass('depPossible');
@@ -32,7 +32,7 @@ function move(perso){
 
 //fonction qui envoie a la fonction 'deplacement possible' les coordonné du personnage en court
 function possibleMove(perso){
-    $('td').removeClass('atkPossible')
+    $('td').removeClass('atkPossible');
     var selectPerso = $('#'+perso.nom);
     var posIndex = $('td').index(selectPerso.parent());
     var posRow = $('tr').index($('td:nth('+posIndex+')').parent());
@@ -50,7 +50,7 @@ function deplacementPossible(row, caseIndex) {
     
     for (i = 1; i <= dep; i++) {
         possibleCase = caseIndex - i * nbCasehorizontales;
-        if (possibleCase > 0) {            
+        if (possibleCase >= 0) {            
             if (allCase[possibleCase].hasChildNodes()) {
                 if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {                     
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');

@@ -17,7 +17,7 @@ function atkPossible(row, caseIndex) {
     
     for (i = 1; i <= porterAtk; i++) {
         possibleCase = caseIndex - i * nbCasehorizontales;
-        if (possibleCase > 0) {            
+        if (possibleCase >= 0) {            
             if (allCase[possibleCase].hasChildNodes()) {
                 if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {                     
                     $('td:nth(' + possibleCase + ')').addClass('atkPossible');

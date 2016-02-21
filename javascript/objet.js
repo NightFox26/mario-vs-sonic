@@ -7,6 +7,7 @@ var personnage ={
         this.vie = vie;
         this.degat = degat;
         this.arme = '...';
+        this.actif = false;
         
         if(nom==='mario'){
             this.spriteSrc='sprite/mario.png';
