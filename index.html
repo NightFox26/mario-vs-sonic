@@ -78,7 +78,11 @@
             position:relative;
             left:50px;
             top:-20px;
-        }        
+        } 
+        #checkMusic{
+            margin-left:30px;
+            color:red;
+        }
         
     </style>
 
@@ -98,18 +102,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class = 'turn'></span>
-                </button>                
+                </button>     
                 
-                <a class="navbar-brand" href="#" style='font-size:3em;' >Mario vs Sonic</a>
+                <a class="navbar-brand"  href="#" style='font-size:3em;' >Mario vs Sonic </a>
             </div>
 
             <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">                    
                     <li><a href="#" id = 'move'>Deplacer</a></li>
                     <li><a href="#about" id = 'atk'>Attaquer</a></li>
                     <li><a href="#contact" id = 'end'>Fin de tour</a></li>
                     <li class="navbar-brand"> <span class = 'turn' ></span> </li>
-                    <li ><div  ><img id='weapon' src="sprite/weapon/sonic2.png"  alt="arme"/></div></li>                  
+                    <li ><div  ><img id='weapon' src="sprite/weapon/sonic2.png"  alt="arme"/></div></li> 
+                    <li><div id ='checkMusic' class="navbar-brand"><input type="checkbox" id = 'musique' name="musique" checked><label for="musique">Musique</label></div></li>                 
                 </ul>
                
             </div><!--.nav-collapse -->
@@ -122,16 +127,9 @@
         </table>
     </div> 
     
-    <span  id = 'popMario' class ='pop'  data-html="true" data-container="body" data-toggle="popover" data-placement="top"
-    title="Infos Mario" data-content='Vie : ... <br/>
-                                     Arme : ...'>  
-    </span>
-            
-    <span  id = 'popSonic' class ='pop' data-html="true" data-container="body" data-toggle="popover" data-placement="top"
-    title="Infos Sonic" data-content='Vie : ... <br/>
-                                     Arme : ...'>  
-    </span>
-             
+    <audio id = 'audio'  autoplay=true>
+        <source src="bgm/mario.mp3">
+    </audio>
     
     
     <script src="javascript/jquery.js"></script>
@@ -145,8 +143,6 @@
     <script src='javascript/anim.js'></script>
     <script src='javascript/HUD.js'></script>
     <script src='javascript/mainAlgo.js'></script> 
-    
-       
                          
 </body>
 </html>

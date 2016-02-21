@@ -83,13 +83,17 @@
                 }
                 else{
                    img.className = array[i][2].nom;  
-                }
-                
+                } 
                 img.src = array[i][2].spriteSrc;
                 img.width = $('table').width() / nbCasehorizontales;
                 img.height = Math.floor(htScreen / (nbCaseVertical * 1.3));
                 cases[i].appendChild(img);
+                
+                //ici je creer les attrib du popover info des perso
+                //if(img.id){
+                  // $('#'+img.id).attr('data-html',"true").attr('data-//container',"body").attr('data-toggle',"popover").attr('data-//placement',"top"); 
+               // }                
             }
         }
-
-    }
+    }  
+    

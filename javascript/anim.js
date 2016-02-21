@@ -1,6 +1,6 @@
-function spriteClignote(name) {
-    $('img.' + name).fadeOut(1000).fadeIn(1000);   
-    //spriteClignote(name);
+function spriteClignote(perso) {
+    $('#' +joueur1.nom).fadeOut(1000).fadeIn(1000);   
+    //spriteClignote(perso);
 }
 
-spriteClignote('mario');
+ setInterval(spriteClignote,2000);

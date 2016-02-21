@@ -6,6 +6,7 @@ var personnage ={
         this.nom = nom;
         this.vie = vie;
         this.degat = degat;
+        this.arme = '...';
         
         if(nom==='mario'){
             this.spriteSrc='sprite/mario.png';
@@ -25,11 +26,11 @@ var personnage ={
 }
 
 var joueur1 = Object.create(personnage);
-joueur1.initPerso('mario',100,10);
+joueur1.initPerso('mario',ptsVieMario,dpsMario);
 
 
 var joueur2 = Object.create(personnage);
-joueur2.initPerso('sonic',100,10);
+joueur2.initPerso('sonic',ptsVieSonic,dpsSonic);
   
 /*****************************************/
 /**********Objet case armement************/

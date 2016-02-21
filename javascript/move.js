@@ -23,6 +23,8 @@ function move(perso){
                $('td:nth(' + index + ')').append(image);
                 $('td').off('click'); 
             }
+            
+            majPopOver(); 
             hudTurnPLayerInfo(perso);            
         }
     });
@@ -50,7 +52,7 @@ function deplacementPossible(row, caseIndex) {
         possibleCase = caseIndex - i * nbCasehorizontales;
         if (possibleCase > 0) {            
             if (allCase[possibleCase].hasChildNodes()) {
-                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {                     
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {                     
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -65,7 +67,7 @@ function deplacementPossible(row, caseIndex) {
         possibleCase = caseIndex + i * nbCasehorizontales;
         if (possibleCase < allCase.length) {
             if (allCase[possibleCase].hasChildNodes()) {
-                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -80,7 +82,7 @@ function deplacementPossible(row, caseIndex) {
         possibleCase = caseIndex - i;
         if (possibleCase >= row * nbCasehorizontales) {
             if (allCase[possibleCase].hasChildNodes()) {
-                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -95,7 +97,7 @@ function deplacementPossible(row, caseIndex) {
         possibleCase = caseIndex + i;
         if (possibleCase < (row + 1) * nbCasehorizontales) {
             if (allCase[possibleCase].hasChildNodes()) {
-                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor') {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;

@@ -8,6 +8,10 @@
         nbCaseBloquante = 30,
         
         nbCaseDeplacementPerso = 3,
+        ptsVieMario = 100;
+        ptsVieSonic = 100;
+        dpsMario    = 10;
+        dpsSonic    = 10;
 
         porterAttaque = nbCasehorizontales,
 

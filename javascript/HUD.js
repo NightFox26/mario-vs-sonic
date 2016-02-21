@@ -28,37 +28,40 @@ function coloringActionMenu(actionArray) {
 }
 
 //fonction qui gere le popover de la mini fenetre d info lorsque la sourie passe sur mario ou sonic
-$(function () {
+function infoPerso(){
     var tailleCase = $('table').width() / nbCasehorizontales;
    
     $('.pop').css('left',tailleCase/2+'px');    
-    $('#popMario').insertBefore($('#mario'));
-    $('#popSonic').insertBefore($('#sonic'));
-    $(document).remove($('#popSonic')).remove($('#popMario'))    
     $('[data-toggle="popover"]').popover();
 
-    $('#mario').mouseover(function () {
-        $('#popMario').trigger("click");
+    $('#mario,#sonic').mouseenter(function () {         
+        //$('#mario').trigger("click");
+        $('[data-toggle="popover"]').popover('show');
     });
 
-    $('#mario').mouseout(function () {
-        $('#popMario').trigger("click");
-    });
-    
-    $('#sonic').mouseover(function () {
-        $('#popSonic').trigger("click");
-    });
-
-    $('#sonic').mouseout(function () {
-        $('#popSonic').trigger("click");
-    });
-
-
-});
-
-//fonction de mise a jour du popover d'info sur les personnage
-function majPopOver(){
-    //exemple.......a finir
-    $('#pop').attr('data-content','Vie : 50 <br/> Arme : Carapace');
+    $('#mario,#sonic').mouseout(function () {        
+        $('[data-toggle="popover"]').popover('hide');        
+    });    
 }
 
+//fonction de mise a jour du popover d'info sur les personnage
+function majPopOver(){ 
+    var perso = joueur1;
+    for(var i = 0;i<2;i++){        
+         $('#'+perso.nom).attr('data-html',"true").attr('data-container',"body").attr('data-toggle',"popover").attr('data-placement',"top"); 
+    
+         $('#'+perso.nom).attr('data-content','Infos '+perso.nom +':<br/>Vie : '+perso.vie+ '<br/> Dégat : '+perso.degat +'<br/> Arme : '+perso.arme);
+        perso = joueur2;
+    }
+    infoPerso();    
+}
+
+
+$(':checkbox#musique').change(function(){
+    if ($(this).is(':checked')){
+       $('#audio')[0].play(); 
+    } 
+    else{
+       $('#audio')[0].pause(); 
+    }
+})

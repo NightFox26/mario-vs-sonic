@@ -16,7 +16,7 @@ $(function () {
 
     hudTurnPLayerInfo(player);
     coloringActionMenu(actionDone);
-        
+    majPopOver();         
 
     btnMove.addEventListener('click', function () {
         if (verifMove()) {
@@ -52,6 +52,7 @@ $(function () {
         console.log('c\'est a ' + player.nom + ' de jouer!');
         hudTurnPLayerInfo(player);
         coloringActionMenu(actionDone);
+        //spriteClignote(player);
         if (joueur1.vie <= 0 || joueur2.vie <= 0) {
             alert('fin de partie');
         }
