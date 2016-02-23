@@ -4,7 +4,7 @@
 
     grilleCreation();
     creationSpritePlayer();
-    creationSpriteCaseBonus(nbCaseArme);
+    creationSpriteCaseBonus(caisseArme.length);
     creationSpriteCaseBlocante(nbCaseBloquante);
 
     updateMap(arrayRand(arrayGrille));
@@ -37,16 +37,17 @@
     };
 
     //fonction qui integre les cases armement dans le array
-    function creationSpriteCaseBonus(nb) {
+    function creationSpriteCaseBonus(nb) {        
         for (var i = 0; i < nb; i++) {
-            var armeBox = Object.create(boiteArmement);
+           /* var armeBox = Object.create(boiteArmement);
             if (i >= nb / 2) {
-                armeBox.initBoite('mario');
+                armeBox.initBoite('Mario');
                 insertArraySprite(armeBox);
             } else {
-                armeBox.initBoite('sonic');
+                armeBox.initBoite('Sonic');
                 insertArraySprite(armeBox);
-            }
+            }*/
+           insertArraySprite(caisseArme[i]); 
         }
     };
 
@@ -78,7 +79,7 @@
             if (array[i][2] !== 'vide') {                
                 var img = document.createElement('img');
                 
-                if(array[i][2].nom === 'sonic' || array[i][2].nom === 'mario'){
+                if(array[i][2].nom === 'Sonic' || array[i][2].nom === 'Mario'){
                    img.id = array[i][2].nom; 
                 }
                 else{
@@ -87,12 +88,8 @@
                 img.src = array[i][2].spriteSrc;
                 img.width = $('table').width() / nbCasehorizontales;
                 img.height = Math.floor(htScreen / (nbCaseVertical * 1.3));
-                cases[i].appendChild(img);
-                
-                //ici je creer les attrib du popover info des perso
-                //if(img.id){
-                  // $('#'+img.id).attr('data-html',"true").attr('data-//container',"body").attr('data-toggle',"popover").attr('data-//placement',"top"); 
-               // }                
+                cases[i].appendChild(img);                
+                        
             }
         }
     }  

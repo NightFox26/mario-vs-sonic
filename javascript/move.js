@@ -4,7 +4,9 @@ function move(perso){
     $('.depPossible').click( function(){        
         if ($(this).hasClass('depPossible') && perso.actif === true){            
             var index = $('td').index(this);
-            $('td:nth(' + positionPrecedente + ')').html('');
+            
+            spriteUnder(perso,positionPrecedente);
+            
             $('.depPossible').removeClass('depPossible');
             var image = document.createElement('img');
             image.id = perso.nom;
@@ -13,21 +15,49 @@ function move(perso){
             image.width = $('table').width() / nbCasehorizontales;
             image.height = Math.floor(htScreen / (nbCaseVertical * 1.3));
             
-            if ($(this).children().is('.MarioBox, .SonicBox')){
-               image.style.position = 'absolute'; 
+            if ($(this).children().is('[class*="SonicBox"], [class*="MarioBox"]')){
+               image.style.position = 'absolute';
+                
+                
+                if($(this).children().is('[class*="'+perso.nom+'Box"]')){
+                    
+                    if($(this).children().is('[class*="bomb"]')){
+                        alert('BOOMMMMM!!!!');
+                    }
+                    var box = infoArme($('td:nth(' + index + ') img').attr('class'));
+                    
+                    $('td:nth(' + index + ') img').remove('img');
+                    image.style.position = ''                    
+                                 
+                }   
                 $('td:nth(' + index + ')').prepend(image);
-                $('td').off('click'); 
+                $('td').off('click');
+                dialBoxWeaponLoot(perso,box);   
             }
             else{
                 image.style.position = '';
-               $('td:nth(' + index + ')').append(image);
-                $('td').off('click'); 
+                $('td:nth(' + index + ')').append(image);
+                $('td').off('click');                 
             }
             
-            majPopOver(); 
-            hudTurnPLayerInfo(perso);            
+            infoPerso();
+            hudTurnPLayerInfo(perso); 
+            
         }
     });
+}
+
+function spriteUnder(perso,here){
+    var under = $('td:nth(' + positionPrecedente + ')').children();    
+        
+    if(under.is('[class*="SonicBox"], [class*="MarioBox"]')){ 
+        if(!under.is('[class*="'+perso.nom+'Box"]')){            
+            putBomb(here);
+        }        
+       $('img').remove('#'+perso.nom);
+    }else{
+      $('td:nth(' + positionPrecedente + ')').html('');  
+    }
 }
 
 //fonction qui envoie a la fonction 'deplacement possible' les coordonné du personnage en court
@@ -52,7 +82,7 @@ function deplacementPossible(row, caseIndex) {
         possibleCase = caseIndex - i * nbCasehorizontales;
         if (possibleCase >= 0) {            
             if (allCase[possibleCase].hasChildNodes()) {
-                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {                     
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'Mario' && allCase[possibleCase].childNodes[0].id !== 'Sonic') {                     
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -67,7 +97,7 @@ function deplacementPossible(row, caseIndex) {
         possibleCase = caseIndex + i * nbCasehorizontales;
         if (possibleCase < allCase.length) {
             if (allCase[possibleCase].hasChildNodes()) {
-                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'Mario' && allCase[possibleCase].childNodes[0].id !== 'Sonic') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -82,7 +112,7 @@ function deplacementPossible(row, caseIndex) {
         possibleCase = caseIndex - i;
         if (possibleCase >= row * nbCasehorizontales) {
             if (allCase[possibleCase].hasChildNodes()) {
-                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'Mario' && allCase[possibleCase].childNodes[0].id !== 'Sonic') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;
@@ -97,7 +127,7 @@ function deplacementPossible(row, caseIndex) {
         possibleCase = caseIndex + i;
         if (possibleCase < (row + 1) * nbCasehorizontales) {
             if (allCase[possibleCase].hasChildNodes()) {
-                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'mario' && allCase[possibleCase].childNodes[0].id !== 'sonic') {
+                if (allCase[possibleCase].childNodes[0].className !== 'PlanteCarnivor' && allCase[possibleCase].childNodes[0].id !== 'Mario' && allCase[possibleCase].childNodes[0].id !== 'Sonic') {
                     $('td:nth(' + possibleCase + ')').addClass('depPossible');
                 } else {
                     break;

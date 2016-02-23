@@ -1,0 +1,65 @@
+[33mcommit 0ee698784122cd00a82e37bfdaa5c1f2210f60e0[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Sun Feb 21 11:09:56 2016 +0100
+
+    fonctionnalité des clignotement des persos par tour ->fonctionne.........et correction du bug de chagement de sprite si tp proche autre perso
+
+[33mcommit ee7863cda6b9c96b8527ffc816cbd4093c6a2701[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Sun Feb 21 10:25:52 2016 +0100
+
+    ajout de la fonctionnalité musique
+
+[33mcommit a0d6740ba67c744e756fb5426de50ff27f770964[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Sun Feb 14 19:30:07 2016 +0100
+
+    ajout de la fonction popover sur perso et de la colorisation de la barre d action
+
+[33mcommit 54d8d11ddbd635e52757d497f43657be069bc1da[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Sat Feb 13 11:32:59 2016 +0100
+
+    finalisation du deplacement et debut du main algo
+
+[33mcommit c9a5b1fe6d03b95a9958567441205ba6beba856c[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Fri Feb 12 19:35:07 2016 +0100
+
+    mise en place du select and move version d essais
+
+[33mcommit b16a91d987d1e9ed6f2760e2c28dd4323f830f2f[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Thu Feb 11 20:20:51 2016 +0100
+
+    remaniement du projet en mode 'table' et debut de la gestion de la verification des deplacement possibles
+
+[33mcommit d85df1de193bc429f646974b78572c10f20d0115[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Wed Feb 10 18:53:45 2016 +0100
+
+    version div qui marche pas terrible
+
+[33mcommit f197b0e903b95dd734b194d37fa0540abb104ad0[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Mon Feb 8 20:33:35 2016 +0100
+
+    creation des class objets et debut de la gestion de l affichage des sprite sur map
+
+[33mcommit ca01314ac60e0d747815d5680fad1f46fcbaac6d[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Sun Feb 7 20:11:36 2016 +0100
+
+    modification de la taille du bg2
+
+[33mcommit 939950bd88da6811e6fad35d76c391bb83e36915[m
+Author: Nightfox26 <thierry.odier26@sfr.fr>
+Date:   Sun Feb 7 20:04:55 2016 +0100
+
+    creation du repository sur github, creation de la grille et bg
+
+[33mcommit 74a13449d7b0bd4b93de201ff148819452d66a18[m
+Author: NightFox26 <thierry.odier26@sfr.fr>
+Date:   Sun Feb 7 19:55:32 2016 +0100
+
+    Initial commit

@@ -12,10 +12,12 @@ function hudTurnPLayerInfo(player) {
 function coloringActionMenu(actionArray) {
     var moveMenu = $('#move');
     var atkMenu = $('#atk');
+    var defMenu = $('#def');
     var endMenu = $('#end');
 
     moveMenu.css('color', 'lightgreen');
     atkMenu.css('color', 'orange');
+    defMenu.css('color', 'yellow');
     endMenu.css('color', 'lightblue');
 
     for (i = 0; i < actionArray.length; i++) {
@@ -23,45 +25,86 @@ function coloringActionMenu(actionArray) {
             moveMenu.css('color', 'lightgrey');
         } else if (actionArray[i] === 'atk') {
             atkMenu.css('color', 'lightgrey');
+        } else if (actionArray[i] === 'def') {
+            defMenu.css('color', 'lightgrey');
         }
     }
 }
 
-//fonction qui gere le popover de la mini fenetre d info lorsque la sourie passe sur mario ou sonic
-function infoPerso(){
+//fonction qui gere le popover de la mini fenetre d info lorsque la sourie passe sur mario, sonic, ou l'arme active dans le bandeau superieur
+function infoPerso() {
     var tailleCase = $('table').width() / nbCasehorizontales;
-   
-    $('.pop').css('left',tailleCase/2+'px');    
+
+    $('.pop').css('left', tailleCase / 2 + 'px');
     $('[data-toggle="popover"]').popover();
 
-    $('#mario,#sonic').mouseenter(function () {         
-        //$('#mario').trigger("click");
-        $('[data-toggle="popover"]').popover('show');
+    $('#weapon').mouseenter(function () {
+        $(this).popover('show');
     });
 
-    $('#mario,#sonic').mouseout(function () {        
-        $('[data-toggle="popover"]').popover('hide');        
-    });    
+    $('#weapon').mouseout(function () {
+        $(this).popover('hide');
+    });
+
+    $('#Mario,#Sonic').click(function () {
+        majPopOver($(this).attr('id'));
+        $(this).popover('show');
+    });
+
+    $('#Mario,#Sonic').mouseout(function () {
+        $(this).popover('hide');
+    });
 }
 
 //fonction de mise a jour du popover d'info sur les personnage
-function majPopOver(){ 
-    var perso = joueur1;
-    for(var i = 0;i<2;i++){        
-         $('#'+perso.nom).attr('data-html',"true").attr('data-container',"body").attr('data-toggle',"popover").attr('data-placement',"top"); 
-    
-         $('#'+perso.nom).attr('data-content','Infos '+perso.nom +':<br/>Vie : '+perso.vie+ '<br/> Dégat : '+perso.degat +'<br/> Arme : '+perso.arme);
-        perso = joueur2;
+function majPopOver(perso) {
+    if (perso == "Mario") {
+        var perso = joueur1;
+    } else {
+        var perso = joueur2;
     }
-    infoPerso();    
+
+    $('#' + perso.nom).attr('data-html', "true").attr('data-container', "body").attr('data-toggle', "popover").attr('data-placement', "top");
+    $('#' + perso.nom).attr('data-content', 'Infos ' + perso.nom + ':<br/>Vie : ' + perso.vie + '<br/> Défense : ' + perso.def + '<br/> Dégât : ' + perso.degat + '<br/> Arme : ' + perso.arme);
 }
 
+//fonction de dialogue des personnages lorsqu'il ramasse une nouvelle arme et inscription de celle ci dans la barre supperieur
+function dialBoxWeaponLoot(perso, box) {
+    $('#' + perso.nom).attr("data-toggle", "popover").attr('data-html', "true").attr('data-container', "body").attr('data-toggle', "popover").attr('data-placement', "top");
+    $('#' + perso.nom).attr('data-content', "Je Gagne : " + box.arme + '<img src =' + box.armeSrc + ' alt = "arme" />').popover('show');;
+    perso.arme = box.arme;
+    perso.updateStatAtk();
+    $('#weapon').attr({
+        'class': box.arme,
+        'data-content': perso.nom + ' est equipé : <br/>' + perso.arme,
+        'src': box.armeSrc
+    });
+}
 
-$(':checkbox#musique').change(function(){
-    if ($(this).is(':checked')){
-       $('#audio')[0].play(); 
-    } 
-    else{
-       $('#audio')[0].pause(); 
+//function qui met a jour le bandeau superieur a chaque tour (pour l'arme que possede le joueur)
+function updateWeaponHud(perso) {
+    if (perso.arme != 'Aucune Arme') {
+        if (perso.name == 'Mario') {
+            var armeSrc = 'sprite/weapon/' + perso.nom + 'Weapon' + marioArmementPossible.indexOf(perso.arme) + '.png';
+        } else {
+            var armeSrc = 'sprite/weapon/' + perso.nom + 'Weapon' + sonicArmementPossible.indexOf(perso.arme) + '.png';
+        }
+    } else {
+        var armeSrc = "sprite/weapon/noWeapon.png";
+    }
+
+    $('#weapon').attr({
+        'class': perso.arme,
+        'data-content': perso.nom + ' est equipé : <br/>' + perso.arme,
+        'src': armeSrc
+    });
+}
+
+// gestion evenementielle de la checkbox qui allume ou eteint la musique
+$(':checkbox#musique').change(function () {
+    if ($(this).is(':checked')) {
+        $('#audio')[0].play();
+    } else {
+        $('#audio')[0].pause();
     }
 })

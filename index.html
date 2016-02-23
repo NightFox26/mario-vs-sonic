@@ -34,8 +34,7 @@
         td{              
             text-align: center;            
             border:1px rgb(54,54,54) solid;            
-            /*background-color: rgba(0,255,0,0.2);*/
-           
+            /*background-color: rgba(0,255,0,0.2);*/           
         }
         
         .depPossible {
@@ -59,12 +58,12 @@
             
         }
         
-        span[class*="turn sonic"] {           
+        span[class*="turn Sonic"] {           
             color : blue;            
             box-shadow: 3px 3px 20px blue;
         }
         
-        span[class*="turn mario"] {            
+        span[class*="turn Mario"] {            
             color : red;            
             box-shadow: 3px 3px 20px red;
         } 
@@ -83,6 +82,11 @@
             margin-left:30px;
             color:red;
         }
+        
+        .bomb{
+            position: absolute;
+            
+        }        
         
     </style>
 
@@ -110,11 +114,12 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">                    
                     <li><a href="#" id = 'move'>Deplacer</a></li>
-                    <li><a href="#about" id = 'atk'>Attaquer</a></li>
-                    <li><a href="#contact" id = 'end'>Fin de tour</a></li>
+                    <li><a href="#" id = 'atk'>Attaquer</a></li>
+                    <li><a href="#" id = 'def'>Defendre</a></li>
+                    <li><a href="#" id = 'end'>Fin de tour</a></li>
                     <li class="navbar-brand"> <span class = 'turn' ></span> </li>
-                    <li ><div  ><img id='weapon' src="sprite/weapon/sonic2.png"  alt="arme"/></div></li> 
-                    <li><div id ='checkMusic' class="navbar-brand"><input type="checkbox" id = 'musique' name="musique" checked><label for="musique">Musique</label></div></li>                 
+                    <li ><div  ><img id='weapon' class = 'noWeapon' src="sprite/weapon/noWeapon.png"  alt="arme" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Aucune Arme" data-original-title="" title=""/></div></li> 
+                    <li><div id ='checkMusic' class="navbar-brand"><input type="checkbox" id = 'musique' name="musique" checked ><label for="musique">Musique</label></div></li>                 
                 </ul>
                
             </div><!--.nav-collapse -->
@@ -128,9 +133,8 @@
     </div> 
     
     <audio id = 'audio'  autoplay=true>
-        <source src="bgm/mario.mp3">
-    </audio>
-    
+        <source src="bgm/mario1.mp3">
+    </audio> 
     
     <script src="javascript/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
