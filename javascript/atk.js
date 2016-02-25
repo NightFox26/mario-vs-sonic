@@ -11,7 +11,7 @@ function possibleAtk(perso){
 //fonction qui affiche les cases de porterAtklacement possible autour du personnage
 function atkPossible(row, caseIndex) {    
     var i = 1,
-        porterAtk = porterAttaque,
+        porterAtk =  porterAttaqueStandard,
         possibleCase = caseIndex,
         allCase = $('td');
     

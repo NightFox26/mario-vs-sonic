@@ -1,6 +1,7 @@
 var positionPrecedente;
 
-function move(perso){
+function move(perso){    
+    var bombCase = false;    
     $('.depPossible').click( function(){        
         if ($(this).hasClass('depPossible') && perso.actif === true){            
             var index = $('td').index(this);
@@ -21,28 +22,36 @@ function move(perso){
                 
                 if($(this).children().is('[class*="'+perso.nom+'Box"]')){
                     
-                    if($(this).children().is('[class*="bomb"]')){
-                        alert('BOOMMMMM!!!!');
-                    }
-                    var box = infoArme($('td:nth(' + index + ') img').attr('class'));
                     
-                    $('td:nth(' + index + ') img').remove('img');
-                    image.style.position = ''                    
-                                 
-                }   
+                    
+                    if($(this).children().is('[class*="bomb"]')){
+                        //alert('BOOMMMMM!!!!');
+                        //alert('la');
+                        explode(perso,index);
+                        bombCase = true;
+                    }
+                    if(bombCase !== true){
+                        var box = infoArme($('td:nth(' + index + ') img').attr('class'));                   
+                        $('td:nth(' + index + ') img').remove('img');
+                        image.style.position = ''
+                    }
+                                     
+                             
+                } 
+                
                 $('td:nth(' + index + ')').prepend(image);
-                $('td').off('click');
-                dialBoxWeaponLoot(perso,box);   
+                //$('td').off('click');                 ATTENTION J AI ENLEV2 CELA SANS TESTER
+                //explode(perso,index)
+                dialBoxWeaponLoot(perso,box);       
             }
             else{
                 image.style.position = '';
                 $('td:nth(' + index + ')').append(image);
-                $('td').off('click');                 
+                //$('td').off('click');                 ATTENTION J AI ENLEV2 CELA SANS TESTER           
             }
             
             infoPerso();
             hudTurnPLayerInfo(perso); 
-            
         }
     });
 }

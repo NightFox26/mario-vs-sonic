@@ -70,34 +70,43 @@ function majPopOver(perso) {
 
 //fonction de dialogue des personnages lorsqu'il ramasse une nouvelle arme et inscription de celle ci dans la barre supperieur
 function dialBoxWeaponLoot(perso, box) {
-    $('#' + perso.nom).attr("data-toggle", "popover").attr('data-html', "true").attr('data-container', "body").attr('data-toggle', "popover").attr('data-placement', "top");
-    $('#' + perso.nom).attr('data-content', "Je Gagne : " + box.arme + '<img src =' + box.armeSrc + ' alt = "arme" />').popover('show');;
-    perso.arme = box.arme;
-    perso.updateStatAtk();
-    $('#weapon').attr({
-        'class': box.arme,
-        'data-content': perso.nom + ' est equipé : <br/>' + perso.arme,
-        'src': box.armeSrc
-    });
+    if (box) {
+        $('#' + perso.nom).attr("data-toggle", "popover").attr('data-html', "true").attr('data-container', "body").attr('data-toggle', "popover").attr('data-placement', "top");
+        $('#' + perso.nom).attr('data-content', "Je Gagne : " + box.arme + '<img src =' + box.armeSrc + ' alt = "arme" />').popover('show');;
+        perso.arme = box.arme;
+
+        perso.updateStatAtk();
+        updateWeaponHud(perso);
+    }
 }
 
 //function qui met a jour le bandeau superieur a chaque tour (pour l'arme que possede le joueur)
 function updateWeaponHud(perso) {
-    if (perso.arme != 'Aucune Arme') {
-        if (perso.name == 'Mario') {
+    if (perso.arme !== 'Aucune Arme') {
+        if (perso.nom == 'Mario') {
             var armeSrc = 'sprite/weapon/' + perso.nom + 'Weapon' + marioArmementPossible.indexOf(perso.arme) + '.png';
+            var arme = statArmeMario[perso.arme];
         } else {
             var armeSrc = 'sprite/weapon/' + perso.nom + 'Weapon' + sonicArmementPossible.indexOf(perso.arme) + '.png';
+            var arme = statArmeSonic[perso.arme];
         }
+
+        $('#weapon').attr({
+            'class': perso.arme,
+            'data-content': perso.nom + ' est equipé : <br/>' + perso.arme + '<br/><br/>Dégat : ' + arme['atk'] + '<br/>Défence : ' + arme['def'] + '<br/>Vie : ' + arme['vie'] + '<br/>Portée : ' + arme['range'],
+            'src': armeSrc
+        });
     } else {
         var armeSrc = "sprite/weapon/noWeapon.png";
+
+        $('#weapon').attr({
+            'class': perso.arme,
+            'data-content': perso.nom + ' est equipé : <br/>' + perso.arme,
+            'src': armeSrc
+        });
     }
 
-    $('#weapon').attr({
-        'class': perso.arme,
-        'data-content': perso.nom + ' est equipé : <br/>' + perso.arme,
-        'src': armeSrc
-    });
+
 }
 
 // gestion evenementielle de la checkbox qui allume ou eteint la musique

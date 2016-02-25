@@ -6,6 +6,7 @@
         
         nbCaseArme = 3,         // Attention cette valeur definie le nombre de caisse armement pour chaque personnage (par defaut : 3 caisses par perso)
         nbCaseBloquante = 30,
+        ratioHauteurCase = 1.3;
         
         nbCaseDeplacementPerso = 3,
         
@@ -16,23 +17,54 @@
         dpsSonic    = 10;
 
         defMario    =  15;
-        defSonic    =  15; 
+        defSonic    =  15;
 
-        degatArmeMario  = {
-            'fleur de feu'    : 15,
-            'carapace rouge'  : 25,
-            'carapace bleu'   : 35,
-            'boulet de canon' : 45,
+        porterAttaqueStandard = 1;
+        degatBomb             =15;      //le degat des bombes posé sur les cases objet de l'adversaire
+
+        statArmeMario  = {         //liste des armes de mario ainsi que les modification des stats du personnage qu'elles confere
+            'fleur de feu'    : {'atk':15,
+                                 'def':0,
+                                 'vie':0,
+                                 'range':5},
+            
+            'feuille tanooki'  : {'atk':15,
+                                 'def':0,
+                                 'vie':0,
+                                 'range':5},
+            
+            'carapace koopa'   : {'atk':15,
+                                 'def':0,
+                                 'vie':0,
+                                 'range':5},
+            
+            'boulet de canon' : {'atk':15,
+                                 'def':0,
+                                 'vie':0,
+                                 'range':5},
         };
 
-        degatArmeSonic  = {
-            'anneau d\'or'       : 15,
-            'épine tournoyante'  : 25,
-            'attaque Tail'       : 35,
-            'sept joyaux'        : 45,
-        };
+        statArmeSonic  = {       //liste des armes de sonic ainsi que les modification des stats du personnage qu'elles confere  
+            'anneau d\'or'       : {'atk':15,
+                                    'def':0,
+                                    'vie':0,
+                                    'range':5},
+            
+            'épine tournoyante'  : {'atk':15,
+                                    'def':0,
+                                    'vie':0,
+                                    'range':5},
+            
+            'attaque Tail'       : {'atk':15,
+                                    'def':0,
+                                    'vie':0,
+                                    'range':5},
+            
+            'sept joyaux'        : {'atk':15,
+                                    'def':0,
+                                    'vie':0,
+                                    'range':5},
+        };      
 
-        porterAttaque = nbCasehorizontales;
-
-        ratioHauteurCase = 1.3;
+        
 /************************************************/

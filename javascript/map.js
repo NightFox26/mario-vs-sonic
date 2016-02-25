@@ -9,7 +9,6 @@
 
     updateMap(arrayRand(arrayGrille));
 
-
     //fonction de creation de la grille
     function grilleCreation() {
         for (var i = 0; i < nbCaseVertical; i++) {
@@ -38,15 +37,7 @@
 
     //fonction qui integre les cases armement dans le array
     function creationSpriteCaseBonus(nb) {        
-        for (var i = 0; i < nb; i++) {
-           /* var armeBox = Object.create(boiteArmement);
-            if (i >= nb / 2) {
-                armeBox.initBoite('Mario');
-                insertArraySprite(armeBox);
-            } else {
-                armeBox.initBoite('Sonic');
-                insertArraySprite(armeBox);
-            }*/
+        for (var i = 0; i < nb; i++) {           
            insertArraySprite(caisseArme[i]); 
         }
     };
@@ -92,5 +83,7 @@
                         
             }
         }
-    }  
+    }
+
+    
     

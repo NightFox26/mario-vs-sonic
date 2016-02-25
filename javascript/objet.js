@@ -28,11 +28,11 @@ var personnage ={
     },
     
     updateStatAtk : function(){
-        if (this.nom == 'Mario'){
-            this.degat = dpsMario + degatArmeMario[this.arme];
+        if (this.nom == 'Mario'){            
+            this.degat = dpsMario + statArmeMario[this.arme]['atk'];
         }
         else if (this.nom == 'Sonic'){
-            this.degat = dpsSonic + degatArmeSonic[this.arme];
+            this.degat = dpsSonic + statArmeSonic[this.arme]['atk'];
         }
     }
     
@@ -73,7 +73,7 @@ var boiteArmement = {
     
 }
 //ici je crée les differente boite d'armement en fonction du nombre configuré
-var marioArmementPossible = ["fleur de feu","carapace rouge","carapace bleu","boulet de canon"];
+var marioArmementPossible = ["fleur de feu","feuille tanooki","carapace koopa","boulet de canon"];
 var sonicArmementPossible = ["anneau d'or","épine tournoyante","attaque Tail","sept joyaux"];
 var caisseArme = [];
 for(var i = 0,c=nbCaseArme; i<c ; i++){

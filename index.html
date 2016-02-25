@@ -13,7 +13,8 @@
         html{
             background-color: rgb(20,20,20);
         }
-        body{
+        body{ 
+        position:relative;
         padding-top:130px;
         background-image: url(sprite/bg.jpg);
         background-size: 100% 100%;
@@ -22,7 +23,7 @@
         .starter-template
         {padding:40px 15px;text-align:center;}
         
-        table{
+        table{            
             margin:auto;
             width:80%; 
             border:2px groove black;
@@ -85,6 +86,7 @@
         
         .bomb{
             position: absolute;
+            z-index: 1000;
             
         }        
         
@@ -128,7 +130,7 @@
     </nav>    
     <div class="container" >
         <table>
-        
+    
         </table>
     </div> 
     
