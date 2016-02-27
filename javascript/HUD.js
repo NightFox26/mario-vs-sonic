@@ -35,7 +35,7 @@ function coloringActionMenu(actionArray) {
 function infoPerso() {
     var tailleCase = $('table').width() / nbCasehorizontales;
 
-    $('.pop').css('left', tailleCase / 2 + 'px');
+    //$('.pop').css('left', tailleCase / 2 + 'px');
     $('[data-toggle="popover"]').popover();
 
     $('#weapon').mouseenter(function () {
@@ -70,13 +70,17 @@ function majPopOver(perso) {
 
 //fonction de dialogue des personnages lorsqu'il ramasse une nouvelle arme et inscription de celle ci dans la barre supperieur
 function dialBoxWeaponLoot(perso, box) {
-    if (box) {
-        $('#' + perso.nom).attr("data-toggle", "popover").attr('data-html', "true").attr('data-container', "body").attr('data-toggle', "popover").attr('data-placement', "top");
-        $('#' + perso.nom).attr('data-content', "Je Gagne : " + box.arme + '<img src =' + box.armeSrc + ' alt = "arme" />').popover('show');;
+    $('#' + perso.nom).attr("data-toggle", "popover").attr('data-html', "true").attr('data-container', "body").attr('data-toggle', "popover").attr('data-placement', "top");
+    if (box.nom.search(perso.nom)>=0) {        
+        $('#' + perso.nom).attr('data-content', "<p>Je Gagne : " + box.arme + '<br/><img src =' + box.armeSrc + ' alt = "arme" class="img-responsive center-block"/></p>').popover('show');
         perso.arme = box.arme;
 
         perso.updateStatAtk();
         updateWeaponHud(perso);
+        apparencePerso(perso,box.nom);
+    }
+    else{       
+       $('#' + perso.nom).attr('data-content', "Je piege ta case!!! <br/>Viens le prendre maintenant!!!").popover('show');; 
     }
 }
 
@@ -112,8 +116,8 @@ function updateWeaponHud(perso) {
 // gestion evenementielle de la checkbox qui allume ou eteint la musique
 $(':checkbox#musique').change(function () {
     if ($(this).is(':checked')) {
-        $('#audio')[0].play();
+        $('#bgm')[0].play();
     } else {
-        $('#audio')[0].pause();
+        $('#bgm')[0].pause();
     }
 })

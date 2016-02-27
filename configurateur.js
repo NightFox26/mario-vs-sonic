@@ -5,7 +5,7 @@
         nbCaseVertical = 10,
         
         nbCaseArme = 3,         // Attention cette valeur definie le nombre de caisse armement pour chaque personnage (par defaut : 3 caisses par perso)
-        nbCaseBloquante = 30,
+        nbCaseBloquante = 20,
         ratioHauteurCase = 1.3;
         
         nbCaseDeplacementPerso = 3,

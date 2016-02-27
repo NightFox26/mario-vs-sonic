@@ -74,11 +74,6 @@
             top:5px;
         }
         
-        .pop{
-            position:relative;
-            left:50px;
-            top:-20px;
-        } 
         #checkMusic{
             margin-left:30px;
             color:red;
@@ -86,9 +81,12 @@
         
         .bomb{
             position: absolute;
-            z-index: 1000;
-            
+            z-index: 1000;            
+        }
+        #Mario, #Sonic{             
+            z-index: 500;
         }        
+        
         
     </style>
 
@@ -134,9 +132,20 @@
         </table>
     </div> 
     
-    <audio id = 'audio'  autoplay=true>
-        <source src="bgm/mario1.mp3">
-    </audio> 
+    <audio id = 'bgm' autoplay=true loop=true >
+        <source src="sound/bgm/marioRemix.mp3"  type="audio/mp3">
+        <source src="sound/bgm/marioRemix.ogg"  type="audio/ogg">
+    </audio>
+    
+    <audio id = 'soundMarioItem' preload="auto" >
+        <source src="sound/effet/power-up.mp3"  type="audio/mp3">
+        <source src="sound/effet/power-up.ogg"  type="audio/ogg"> 
+    </audio>
+    
+    <audio id = 'soundSonicItem' preload="auto" >
+        <source src="sound/effet/ring.mp3"  type="audio/mp3">
+        <source src="sound/effet/ring.ogg"  type="audio/ogg"> 
+    </audio>
     
     <script src="javascript/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>

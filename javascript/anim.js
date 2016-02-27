@@ -15,14 +15,16 @@ setInterval(spriteClignote, 2000);
 function putBomb(here) {
     var idBox = $('td:nth(' + here + ')>img[class*="Box"]')[0].className;
     infoArme(idBox).bombed = true;
-    $('td:nth(' + here + ')').prepend('<img class = "bomb" src="sprite/bomb.gif" alt="animBomb" title = "Caisse piégée">');
+    $('td:nth(' + here + ')').prepend('<img class = "bomb" src="sprite/bomb.gif" alt="animBomb" title = "Caisse piégée">');    
 }
 
 //animation de l'explosion de la mini bombe
 function explode(perso, here) {
     var ici = $('td:nth(' + here + ')')
+    effacePicture(here,"bomb");
     ici.prepend('<img id = "boom" class = "bomb" width = 0 height = 0 src="sprite/boom.png" alt="explode" />');
-    $('#boom').animate({
+    
+    $('#boom').animate({ 
             'width': '150'
         }, {
             queue: false,
@@ -30,9 +32,7 @@ function explode(perso, here) {
         })
         .animate({
             'height': '150'
-        }, 500, function () {
-
-            
+        }, 500, function () {            
 
             $('body').animate({
                     'right': '+50'
@@ -57,15 +57,8 @@ function explode(perso, here) {
                 }, 50, function () {
 
                     $('#' + perso.nom).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100,function(){                      
-                        $('td:nth(' + here + ') img').remove('img');
-                    
-                        var image = document.createElement('img');
-                        image.id = perso.nom;
-                        image.src = perso.spriteSrc;            
-                        image.width = $('table').width() / nbCasehorizontales;
-                        image.height = Math.floor(htScreen / (nbCaseVertical * 1.3)); 
-                        image.style.position = '';
-                        $('td:nth(' + here + ')').append(image);                       
+                        effacePicture(here);
+                        insertPerso(perso, here)                                        
                     });
                     
                 });
