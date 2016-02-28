@@ -52,7 +52,7 @@ function infoPerso() {
     });
 
     $('#Mario,#Sonic').mouseout(function () {
-        $(this).popover('hide');
+        $('#Mario,#Sonic').popover('hide');
     });
 }
 
@@ -75,13 +75,25 @@ function dialBoxWeaponLoot(perso, box) {
         $('#' + perso.nom).attr('data-content', "<p>Je Gagne : " + box.arme + '<br/><img src =' + box.armeSrc + ' alt = "arme" class="img-responsive center-block"/></p>').popover('show');
         perso.arme = box.arme;
 
-        perso.updateStatAtk();
+        perso.updateStat();
         updateWeaponHud(perso);
         apparencePerso(perso,box.nom);
     }
     else{       
        $('#' + perso.nom).attr('data-content', "Je piege ta case!!! <br/>Viens le prendre maintenant!!!").popover('show');; 
     }
+}
+
+//fonction de dialogue entre les persos suite a un combat
+function dialBattle(perso,degat){
+    if(perso.nom == 'Mario'){
+        var dialPerso = $('#Sonic');
+    }
+    else{
+        var dialPerso = $('#Mario')
+    }
+     dialPerso.attr("data-toggle", "popover").attr('data-html', "true").attr('data-container', "body").attr('data-toggle', "popover").attr('data-placement', "top");
+     dialPerso.attr('data-content', 'Ahaha je t\'inflige ' + degat+' pts de degats' ).popover('show');
 }
 
 //function qui met a jour le bandeau superieur a chaque tour (pour l'arme que possede le joueur)

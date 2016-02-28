@@ -13,13 +13,15 @@ setInterval(spriteClignote, 2000);
 
 //gestion de la mini bomb sur les case armement
 function putBomb(here) {
+    $('#soundPutBomb')[0].play();
     var idBox = $('td:nth(' + here + ')>img[class*="Box"]')[0].className;
     infoArme(idBox).bombed = true;
     $('td:nth(' + here + ')').prepend('<img class = "bomb" src="sprite/bomb.gif" alt="animBomb" title = "Caisse piégée">');    
 }
 
 //animation de l'explosion de la mini bombe
-function explode(perso, here) {
+function explode(perso, here, box) {    
+    $('#soundBomb')[0].play();
     var ici = $('td:nth(' + here + ')')
     effacePicture(here,"bomb");
     ici.prepend('<img id = "boom" class = "bomb" width = 0 height = 0 src="sprite/boom.png" alt="explode" />');
@@ -56,9 +58,11 @@ function explode(perso, here) {
                     'left': '0'
                 }, 50, function () {
 
-                    $('#' + perso.nom).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100,function(){                      
+                    $('#' + perso.nom).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100,function(){ 
                         effacePicture(here);
-                        insertPerso(perso, here)                                        
+                        insertPerso(perso, here);
+                        dialBattle(perso,degatCalc(perso, degatBomb));
+                        infoPerso();
                     });
                     
                 });

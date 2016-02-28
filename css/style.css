@@ -1,0 +1,81 @@
+html {
+    background-color: rgb(20, 20, 20);
+}
+
+body {
+    position: relative;
+    padding-top: 130px;
+    background-image: url(../sprite/bg.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    width: 80%;
+    border: 2px groove black;
+    background-image: url(../sprite/bg2.jpg);
+    background-size: 100% 100%;
+    border-collapse: collapse;
+}
+
+td {
+    text-align: center;
+    border: 1px rgb(54, 54, 54) solid;
+    /*background-color: rgba(0,255,0,0.2);*/
+}
+
+.depPossible {
+    background-color: rgba(0, 0, 255, 0.3);
+    border-color: dodgerblue;
+}
+
+.atkPossible {
+    background-color: rgba(255, 0, 0, 0.3);
+    border-color: orangered;
+}
+
+span[class*="turn"] {
+    margin-left: 50px;
+    padding: 3px;
+    text-shadow: 1px 1px 4px black;
+    background-color: aliceblue;
+    font-size: 1.5em;
+    border: 1px black solid;
+    border-radius: 10px;
+}
+
+span[class*="turn Sonic"] {
+    color: blue;
+    box-shadow: 3px 3px 20px blue;
+}
+
+span[class*="turn Mario"] {
+    color: red;
+    box-shadow: 3px 3px 20px red;
+}
+
+#weapon {
+    position: relative;
+    top: 5px;
+}
+
+#checkMusic {
+    margin-left: 30px;
+    color: red;
+}
+
+.bomb {
+    position: absolute;
+    z-index: 1000;
+}
+
+#Mario,
+#Sonic {
+    z-index: 500;
+}

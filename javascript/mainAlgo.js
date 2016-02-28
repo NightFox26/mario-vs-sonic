@@ -67,6 +67,7 @@ $(function () {
         coloringActionMenu(actionDone);
         updateWeaponHud(player)
         $('td').removeClass('depPossible').removeClass('atkPossible');
+        $('#Mario,#Sonic').popover('hide');
 
         if (joueur1.vie <= 0 || joueur2.vie <= 0) {
             alert('fin de partie');

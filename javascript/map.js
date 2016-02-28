@@ -7,7 +7,7 @@
     creationSpriteCaseBonus(caisseArme.length);
     creationSpriteCaseBlocante(nbCaseBloquante);
 
-    updateMap(arrayRand(arrayGrille));
+    createMap(arrayRand(arrayGrille));
 
     //fonction de creation de la grille
     function grilleCreation() {
@@ -49,7 +49,7 @@
         }
     }
 
-    //fonction qui construit le array contenant les placements
+    //fonction qui construit le array contenant l'enssemble des sprites
     function insertArraySprite(type) {
         var tailleGrille = arrayGrille.length;
         for (var i = 0; i < tailleGrille; i++) {
@@ -60,8 +60,8 @@
         }
     };
 
-    //fonction qui met a jour l'affichage des sprite sur la map
-    function updateMap(array) {
+    //fonction qui met a jour l'affichage des sprite sur la map et créer l'enssemble des sprite en debut de partie
+    function createMap(array) {
         var i = 0,
             long = array.length,
             cases = $('td');
@@ -131,3 +131,29 @@
 
         $('#' + perso.nom).attr('src', perso.spriteSrc);
     }
+
+    //fonction qui positionne une caisse d'arme aleatoire sur la map, apres en avoir ramassé une.
+    function weaponBoxAppear(perso){         
+        createNewWeaponBox(perso);
+        var newBox = caisseArme[caisseArme.length-1];
+        var caseVide=[],
+            i=0,
+            c=$('td').length;       
+        
+        for(i;i<c;i++){            
+            if(!$('td')[i].hasChildNodes()){ //si la case est vide
+                caseVide.push(i);
+            }
+        }
+        
+        var newBoxPosition = caseVide[trueRand(0,caseVide.length-1)];
+        var image = document.createElement('img');
+        image.src = newBox.spriteSrc;    
+        image.className = newBox.nom;
+        image.width = $('table').width() / nbCasehorizontales;
+        image.height = Math.floor(htScreen / (nbCaseVertical * 1.3));         
+        
+        $('td:nth('+ newBoxPosition +')').append(image);
+    }
+
+

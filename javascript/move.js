@@ -1,7 +1,6 @@
 var positionPrecedente;
 
-function move(perso) {
-    var bombCase = false;
+function move(perso) {    
     $('.depPossible').click(function () {
         if ($(this).hasClass('depPossible') && perso.actif === true) {
             var index = $('td').index(this);
@@ -9,16 +8,16 @@ function move(perso) {
             $('.depPossible').removeClass('depPossible');
 
             if ($(this).children().is('[class*="SonicBox"], [class*="MarioBox"]')) {
-                var box = infoArme($('td:nth(' + index + ') img').attr('class'));
-
-                if ($(this).children().is('[class*="' + perso.nom + 'Box"]')) { //si cette box est pour le personnage
+                var box = infoArme($('td:nth(' + index + ') img[class*="Box"]').attr('class'));                
+                
+                if ($(this).children().is('[class*="' + perso.nom + 'Box"]')) { //si cette box est pour le personnage                    
                     insertPerso(perso, index);
-                    effacePicture(index, "box");                    
-                    if ($(this).children().is('[class*="bomb"]')) {
-                        explode(perso, index);
-                        bombCase = true;
+                    effacePicture(index, "box");                   
+                    if ($(this).children().is('[class*="bomb"]')) { 
+                        explode(perso, index, box);                        
                     }
                     dialBoxWeaponLoot(perso, box);
+                    weaponBoxAppear(perso);
                 } else {
                     insertPerso(perso, index, "absolute");
                     dialBoxWeaponLoot(perso, box);
@@ -30,7 +29,7 @@ function move(perso) {
             infoPerso();
             hudTurnPLayerInfo(perso);
         }
-    });
+    });    
 }
 
 function spriteUnder(perso, here) {
