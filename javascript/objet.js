@@ -12,11 +12,11 @@ var personnage = {
         this.actif = false;
 
         if (nom === 'Mario') {
-            this.spriteSrc = 'sprite/Mario.png';
-            this.spriteSrcDef = 'sprite/MarioDef.png'
+            this.spriteSrc = '../sprite/Mario.png';
+            this.spriteSrcDef = '../sprite/MarioDef.png'
         } else {
-            this.spriteSrc = 'sprite/Sonic.png';
-            this.spriteSrcDef = 'sprite/SonicDef.png'
+            this.spriteSrc = '../sprite/Sonic.png';
+            this.spriteSrcDef = '../sprite/SonicDef.png'
         }
     },
 
@@ -43,9 +43,9 @@ var personnage = {
 
 }
 
+// Ici je crée les 2 joueur en fonction du model 'personnage'
 var joueur1 = Object.create(personnage);
 joueur1.initPerso('Mario', ptsVieMario, dpsMario, defMario,rangeAttaqueStandard);
-
 
 var joueur2 = Object.create(personnage);
 joueur2.initPerso('Sonic', ptsVieSonic, dpsSonic, defSonic,rangeAttaqueStandard);
@@ -57,14 +57,14 @@ var boiteArmement = {
         initBoite: function (hero, id) {
             if (hero === 'Mario') {
                 this.nom = 'MarioBox' + id;
-                this.spriteSrc = 'sprite/bonusMario.png';
+                this.spriteSrc = '../sprite/bonusMario.png';
                 this.arme = marioArmementPossible[trueRand(0, marioArmementPossible.length - 1)];
-                this.armeSrc = 'sprite/weapon/' + hero + 'Weapon' + marioArmementPossible.indexOf(this.arme) + '.png';
+                this.armeSrc = '../sprite/weapon/' + hero + 'Weapon' + marioArmementPossible.indexOf(this.arme) + '.png';
             } else {
                 this.nom = 'SonicBox' + id;
-                this.spriteSrc = 'sprite/bonusSonic.png';
+                this.spriteSrc = '../sprite/bonusSonic.png';
                 this.arme = sonicArmementPossible[trueRand(0, sonicArmementPossible.length - 1)];
-                this.armeSrc = 'sprite/weapon/' + hero + 'Weapon' + sonicArmementPossible.indexOf(this.arme) + '.png';
+                this.armeSrc = '../sprite/weapon/' + hero + 'Weapon' + sonicArmementPossible.indexOf(this.arme) + '.png';
             }
             this.bombed = false;
         },
@@ -102,8 +102,7 @@ function infoArme(nomCaisse) {
         if (caisseArme[i].nom == nomCaisse) {
             return caisseArme[i];
         }
-    }
-    
+    }    
 }
 
 /******************************************/
@@ -111,5 +110,5 @@ function infoArme(nomCaisse) {
 /******************************************/
 var caseBlocante = {
     nom: 'PlanteCarnivor',
-    spriteSrc: 'sprite/bloc.png',
+    spriteSrc: '../sprite/bloc.png',
 }

@@ -1,54 +1,62 @@
+var actionDone = [];
+
 $(function () {
     var playerStart = trueRand(1, 2),
-        player;
+        player,
+        adversaire;
 
     if (playerStart == 1) {
         player = joueur1;
+        adversaire = joueur2;
+
     } else {
         player = joueur2;
+        adversaire = joueur1;
     }
 
     var btnMove = document.getElementById('move'),
         btnAtk = document.getElementById('atk'),
         btnDef = document.getElementById('def'),
         btnEnd = document.getElementById('end'),
-        actionDone = [],
         turn = 0;
 
     player.actif = true;
     hudTurnPLayerInfo(player);
-    coloringActionMenu(actionDone);
+    coloringActionMenu(player, actionDone);
+    majPopOver();
     infoPerso();
     updateWeaponHud(player);
 
+    // écoute du click sur le boutton 'move'
     btnMove.addEventListener('click', function () {
         if (verifMove()) {
             possibleMove(player);
             move(player);
-            console.log(player.nom + ' se deplace!!!');
-            actionDone.push('move');
-            coloringActionMenu(actionDone);
+            console.log(player.nom + ' se deplace!!!');            
         } else {
             console.log(player.nom + ' ne peux plus bouger');
         }
     });
 
+    // écoute du click sur le boutton 'attaque'
     btnAtk.addEventListener('click', function () {
-        if (verifAtk()) {
-            possibleAtk(player)
+        if (verifAtkDef()) {
+            $('#' + player.nom).attr('src', player.spriteSrc);
+            possibleAtk(player);
+            atk(player, adversaire);
             console.log(player.nom + ' attaque!!!');
-            actionDone.push('atk');
-            coloringActionMenu(actionDone);
         } else {
             console.log(player.nom + ' ne peux plus attaquer');
         }
 
     });
 
+    // écoute du click sur le boutton 'defendre'
     btnDef.addEventListener('click', function () {
-        if (verifDef()) {
+        if (verifAtkDef()) {
+            $('td').removeClass('atkPossible');
             actionDone.push('def');
-            coloringActionMenu(actionDone);
+            coloringActionMenu(player, actionDone);
             $('#' + player.nom).attr('src', player.spriteSrcDef);
             console.log(player.nom + ' se defend !');
         } else {
@@ -57,6 +65,7 @@ $(function () {
 
     });
 
+    // écoute du click sur le boutton 'fin de tour'
     btnEnd.addEventListener('click', function () {
         turn++;
         actionDone = [];
@@ -64,14 +73,9 @@ $(function () {
         console.log('tour : ' + turn);
         console.log('c\'est a ' + player.nom + ' de jouer!');
         hudTurnPLayerInfo(player);
-        coloringActionMenu(actionDone);
+        coloringActionMenu(player, actionDone);
         updateWeaponHud(player)
         $('td').removeClass('depPossible').removeClass('atkPossible');
-        $('#Mario,#Sonic').popover('hide');
-
-        if (joueur1.vie <= 0 || joueur2.vie <= 0) {
-            alert('fin de partie');
-        }
     });
 
     //fonction qui change de jouer a la fin du tour
@@ -79,17 +83,19 @@ $(function () {
         player.actif = false;
         if (player.nom == 'Mario') {
             joueur2.actif = true;
+            adversaire = joueur1;
             return joueur2;
         } else {
             joueur1.actif = true;
+            adversaire = joueur2;
             return joueur1;
         }
     }
 
-    //fonction qui verifie si le perso a deja attaqué ou non pendant ce tour
-    function verifAtk() {
+    //fonction qui verifie si le perso a deja attaqué/defendu pendant ce tour
+    function verifAtkDef() {
         for (i = 0, c = actionDone.length; i < c; i++) {
-            if (actionDone[i] == 'atk') {
+            if (actionDone[i] == 'atk' || actionDone[i] == 'def') {
                 return false
             }
         }
@@ -105,17 +111,5 @@ $(function () {
         }
         return true;
     }
-    
-    //fonction qui verifie si le perso s'est deja defendu ou non pendant ce tour
-    function verifDef() {
-        for (i = 0, c = actionDone.length; i < c; i++) {
-            if (actionDone[i] == 'def') {
-                return false
-            }
-        }
-        return true;
-    }
-    
-    
 
 });

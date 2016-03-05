@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Un jeux de baston entre Mario et Sonic">
+    <meta name="author" content="Nightfox26">
+    <title>Mario vs Sonic</title>
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!--[if IE]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body id="game">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button type="button" id='move' class="btn btn-primary btn-sm">Deplacer</button>
+                    </li>
+                    <li>
+                        <button id='atk' class="btn btn-primary btn-sm">Attaquer</button>
+                    </li>
+                    <li>
+                        <button id='def' class="btn btn-primary btn-sm">Defendre</button>
+                    </li>
+                    <li>
+                        <button id='end' class="btn btn-primary btn-sm">Fin de tour</button>
+                    </li>
+
+                    <li>
+                        <div><img id='weapon' class='noWeapon' src="../sprite/weapon/noWeapon.png" alt="arme" data-html="true" data-container="body" data-toggle="popover" data-placement="top" data-content="Aucune Arme" data-original-title="" title="" /></div>
+                    </li>
+                    <li>
+                        <div id='checkMusic'>
+                            <input type="checkbox" id='musique' name="musique" checked>
+                            <label for="musique">Musique</label>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>           
+
+        </div>
+    </nav>
+    
+    <div class="container">
+        <table>
+
+        </table>
+    </div>
+
+    <div id="turnDiv" class="container text-center">
+        <p><span class='turn'></span></p>
+    </div>
+
+   <!-- Toutes les musiques ainsi que les effet sonores -->
+    <audio id='bgm' autoplayy preload="metadata" loop=true>
+        <source src="../sound/bgm/marioRemix.mp3" type="audio/mp3">
+        <source src="../sound/bgm/marioRemix.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundMarioItem' preload="auto">
+        <source src="../sound/effet/power-up.mp3" type="audio/mp3">
+        <source src="../sound/effet/power-up.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundSonicItem' preload="auto">
+        <source src="../sound/effet/ring.mp3" type="audio/mp3">
+        <source src="../sound/effet/ring.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundBomb' preload="auto">
+        <source src="../sound/effet/bomb.mp3" type="audio/mp3">
+        <source src="../sound/effet/bomb.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundPutBomb' preload="auto">
+        <source src="../sound/effet/setBomb.mp3" type="audio/mp3">
+        <source src="../sound/effet/setBomb.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundAtkMario' preload="auto">
+        <source src="../sound/effet/atk_Mario.mp3" type="audio/mp3">
+        <source src="../sound/effet/atk_Mario.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundAtkSonic' preload="auto">
+        <source src="../sound/effet/atk_Sonic.mp3" type="audio/mp3">
+        <source src="../sound/effet/atk_Sonic.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundAtk' preload="auto">
+        <source src="../sound/effet/atk.mp3" type="audio/mp3">
+        <source src="../sound/effet/atk.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundBombingMario' preload="auto">
+        <source src="../sound/effet/putBombMario.mp3" type="audio/mp3">
+        <source src="../sound/effet/putBombMario.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundBombingSonic' preload="auto">
+        <source src="../sound/effet/putBombSonic.mp3" type="audio/mp3">
+        <source src="../sound/effet/putBombSonic.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundVictoryMario' preload="auto">
+        <source src="../sound/bgm/MarioWin.mp3" type="audio/mp3">
+        <source src="../sound/bgm/MarioWin.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundVictorySonic' preload="auto">
+        <source src="../sound/bgm/SonicWin.mp3" type="audio/mp3">
+        <source src="../sound/bgm/SonicWin.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundSonicWin' preload="auto">
+        <source src="../sound/effet/SonicWin.mp3" type="audio/mp3">
+        <source src="../sound/effet/SonicWin.ogg" type="audio/ogg">
+    </audio>
+
+    <audio id='soundMarioWin' preload="auto">
+        <source src="../sound/effet/MarioWin.mp3" type="audio/mp3">
+        <source src="../sound/effet/MarioWin.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- Chargement des scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../configurateur.js"></script>
+    <script src="../javascript/sdk.js"></script>
+    <script src="../javascript/objet.js"></script>
+    <script src="../javascript/map.js"></script>
+    <script src="../javascript/move.js"></script>
+    <script src="../javascript/atk.js"></script>
+    <script src='../javascript/anim.js'></script>
+    <script src='../javascript/HUD.js'></script>
+    <script src='../javascript/mainAlgo.js'></script>
+
+</body>
+
+</html>

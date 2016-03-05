@@ -1,94 +1,52 @@
 <!DOCTYPE html>
 <html lang="">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Un jeux de baston entre Mario et Sonic">
+    <meta name="description" content="Jeu de combat sur un damier entre Mario et Sonic">
     <meta name="author" content="Nightfox26">
-    <title>Mario vs Sonic</title>
+    <title>Mario Vs Sonic</title>
     <link rel="shortcut icon" href="">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/style.css">
-    
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
+
+
     <!--[if IE]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class = 'turn'></span>
-                </button>     
-                
-                <a class="navbar-brand"  href="#" style='font-size:3em;' >Mario vs Sonic </a>
-            </div>
+<body id="intro">
 
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">                    
-                    <li><a href="#" id = 'move'>Deplacer</a></li>
-                    <li><a href="#" id = 'atk'>Attaquer</a></li>
-                    <li><a href="#" id = 'def'>Defendre</a></li>
-                    <li><a href="#" id = 'end'>Fin de tour</a></li>
-                    <li class="navbar-brand"> <span class = 'turn' ></span> </li>
-                    <li ><div  ><img id='weapon' class = 'noWeapon' src="sprite/weapon/noWeapon.png"  alt="arme" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Aucune Arme" data-original-title="" title=""/></div></li> 
-                    <li><div id ='checkMusic' class="navbar-brand"><input type="checkbox" id = 'musique' name="musique" checked ><label for="musique">Musique</label></div></li>                 
-                </ul>
-               
-            </div><!--.nav-collapse -->
-            
+    <div class="container">
+        <div id="title">
+            <h1 id="introTitle"><span id="marioTitle">Mario</span> vs <span id = "sonicTitle">Sonic</span></h1>
         </div>
-    </nav>    
-    <div class="container" >
-        <table>
-    
-        </table>
-    </div> 
-    
-    <audio id = 'bgm' autoplay=true loop=true >
-        <source src="sound/bgm/marioRemix1.mp3"  type="audio/mp3">
-        <source src="sound/bgm/marioRemix1.ogg"  type="audio/ogg">
+
+    </div>
+
+    <div id="introPerso" class='introHeros'> </div>
+
+    <div id="introBtn" class="container text-center">
+        <a href="#">
+            <button id="vsplayer" type="button" class="btnIntro btn btn-lg btn-primary">Joueur Vs Joueur</button>
+        </a>
+        <button id="vsIa" type="button" class=" btnIntro btn btn-lg btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content="En court de Developpement">Joueur Vs Ordi</button>
+    </div>
+
+    <audio id='startGame' preload="auto">
+        <source src="sound/effet/putBombMario.mp3" type="audio/mp3">
+        <source src="sound/effet/putBombMario.ogg" type="audio/ogg">
     </audio>
-    
-    <audio id = 'soundMarioItem' preload="auto" >
-        <source src="sound/effet/power-up.mp3"  type="audio/mp3">
-        <source src="sound/effet/power-up.ogg"  type="audio/ogg"> 
-    </audio>
-    
-    <audio id = 'soundSonicItem' preload="auto" >
-        <source src="sound/effet/ring.mp3"  type="audio/mp3">
-        <source src="sound/effet/ring.ogg"  type="audio/ogg"> 
-    </audio>
-    
-    <audio id = 'soundBomb' preload="auto" >
-        <source src="sound/effet/bomb.mp3"  type="audio/mp3">
-        <source src="sound/effet/bomb.ogg"  type="audio/ogg"> 
-    </audio>
-    
-    <audio id = 'soundPutBomb' preload="auto" >
-        <source src="sound/effet/putBomb.mp3"  type="audio/mp3">
-        <source src="sound/effet/putBomb.ogg"  type="audio/ogg"> 
-    </audio>
-    
-    <script src="javascript/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="configurateur.js"></script>
-    <script src="javascript/sdk.js"></script>
-    <script src="javascript/objet.js"></script>
-    <script src="javascript/map.js"></script>    
-    <script src="javascript/move.js"></script>
-    <script src="javascript/atk.js"></script>   
-    <script src='javascript/anim.js'></script>
-    <script src='javascript/HUD.js'></script>
-    <script src='javascript/mainAlgo.js'></script> 
-                         
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="javascript/ecranIntro.js"></script>
 </body>
+
 </html>

@@ -1,7 +1,8 @@
 var positionPrecedente;
 
+// fonction qui effectue le deplacement du sprite
 function move(perso) {    
-    $('.depPossible').click(function () {
+    $('.depPossible').click(function () {         
         if ($(this).hasClass('depPossible') && perso.actif === true) {
             var index = $('td').index(this);
             spriteUnder(perso, positionPrecedente);
@@ -18,20 +19,24 @@ function move(perso) {
                     }
                     dialBoxWeaponLoot(perso, box);
                     weaponBoxAppear(perso);
-                } else {
+                } else {                    
                     insertPerso(perso, index, "absolute");
                     dialBoxWeaponLoot(perso, box);
                 }
 
             } else {
                 insertPerso(perso, index)
-            }
-            infoPerso();
+            }   
+            majPopOver();
+            infoPerso();            
             hudTurnPLayerInfo(perso);
+            actionDone.push('move');
+            coloringActionMenu(perso,actionDone);
         }
     });    
 }
 
+// fonction qui verifie sur quel type de boite se trouve le personnage, dans le but d'y mettre une bombe si ce n'est pas une case pour lui
 function spriteUnder(perso, here) {
     var under = $('td:nth(' + positionPrecedente + ')').children();
 

@@ -1,17 +1,80 @@
+/*css de la page d'intro*/
+
+body {
+    padding-top: 0px;
+    padding-bottom: 50px;
+}
+
+div.starter-template {
+    padding-top: 0px;
+}
+
+#intro {
+    background-image: url("../sprite/intro.jpg");
+    background-size: 100% 100%;
+    border: 10px black solid;
+    border-radius: 50px;
+}
+
+#introTitle {
+    font-size: 6em;
+    text-decoration: underline;
+    font-family: 'sf_collegiateregular';
+    border: 3px black solid;
+    background: linear-gradient(to right, rgba(255, 0, 0, 0.3), rgba(0, 0, 255, 0.3));
+    border-radius: 20px;
+    box-shadow: 20px 20px 10px black;
+    text-shadow: 2px 2px 2px black;
+}
+
+#sonicTitle {
+    color: blue;
+}
+
+#marioTitle {
+    color: red;
+}
+
+button[class*="btnIntro"] {
+    margin: 30px;
+    box-shadow: 10px 10px 10px black;
+}
+
+#introPerso {
+    width: 50%;
+    height: 70%;
+    background-image: url(../sprite/marioSonic.png);
+    background-size: 100% 100%;
+    margin: auto;
+}
+
+
+/*css de la page de jeux*/
+
 html {
     background-color: rgb(20, 20, 20);
 }
 
-body {
+#title {
+    text-align: center;
+}
+
+#game {
     position: relative;
-    padding-top: 130px;
+    padding-top: 30px;
     background-image: url(../sprite/bg.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    margin-bottom: 50px;
 }
 
-.starter-template {
-    padding: 40px 15px;
+.navbar .navbar-nav {
+    display: inline-block;
+    padding-top: 5px;
+    float: none;
+}
+
+.navbar .navbar-collapse {
     text-align: center;
 }
 
@@ -27,7 +90,6 @@ table {
 td {
     text-align: center;
     border: 1px rgb(54, 54, 54) solid;
-    /*background-color: rgba(0,255,0,0.2);*/
 }
 
 .depPossible {
@@ -40,12 +102,15 @@ td {
     border-color: orangered;
 }
 
+#turnDiv {
+    margin-top: 30px;
+}
+
 span[class*="turn"] {
-    margin-left: 50px;
-    padding: 3px;
+    padding: 10px;
     text-shadow: 1px 1px 4px black;
     background-color: aliceblue;
-    font-size: 1.5em;
+    font-size: 2.5em;
     border: 1px black solid;
     border-radius: 10px;
 }
@@ -62,12 +127,19 @@ span[class*="turn Mario"] {
 
 #weapon {
     position: relative;
-    top: 5px;
+    left: 5px;
 }
 
 #checkMusic {
-    margin-left: 30px;
+    margin-left: 10px;
     color: red;
+    padding-top: 10px;
+}
+
+button {
+    margin: 5px;
+    box-shadow: 10px 10px 10px black;
+    text-shadow: 1px 1px 1px black;
 }
 
 .bomb {

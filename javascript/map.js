@@ -1,13 +1,19 @@
     var boxTotal = $('table');
     var htScreen = window.innerHeight;
     var arrayGrille = [];
+    var verifiedArrayGrille = false;
 
     grilleCreation();
     creationSpritePlayer();
     creationSpriteCaseBonus(caisseArme.length);
-    creationSpriteCaseBlocante(nbCaseBloquante);
+    creationSpriteCaseBlocante(nbCaseBloquante);    
 
-    createMap(arrayRand(arrayGrille));
+    while(verifiedArrayGrille === false){
+       verifiedArrayGrille = verifPositionPerso(arrayRand(arrayGrille)); 
+    }        
+    
+    createMap(verifiedArrayGrille);
+    
 
     //fonction de creation de la grille
     function grilleCreation() {
@@ -59,6 +65,31 @@
             }
         }
     };
+
+    //fonction qui verifie si Mario et Sonic ne sont pas collé lors du debut de la partie et modifie leur placement si c'est le cas
+    function verifPositionPerso(arrayGrilleRandom){
+        var indexMario,
+            indexSonic,
+            deltaCase,
+            finalArrayGrille;
+        for (var i = 0, c=arrayGrilleRandom.length;i<c;i++){
+            if(arrayGrilleRandom[i][2].nom === "Mario"){
+               indexMario = i; 
+            }
+            else if (arrayGrilleRandom[i][2].nom === "Sonic"){
+               indexSonic = i;
+            }
+        }
+        
+        deltaCase = Math.abs(indexMario-indexSonic);
+        
+        if(deltaCase<nbCasehorizontales){
+           return false ;
+        }
+        else{
+           return finalArrayGrille = arrayGrilleRandom; 
+        }
+    }
 
     //fonction qui met a jour l'affichage des sprite sur la map et créer l'enssemble des sprite en debut de partie
     function createMap(array) {
@@ -122,10 +153,10 @@
     //fonction qui change l'apparence du personnage en fonction de l'arme ramassé
     function apparencePerso(perso) {
         if (perso.nom == "Mario") {
-            perso.spriteSrc = 'sprite/form/' + perso.nom + 'Form' + marioArmementPossible.indexOf(perso.arme) + '.png';
+            perso.spriteSrc = '../sprite/form/' + perso.nom + 'Form' + marioArmementPossible.indexOf(perso.arme) + '.png';
             $('#soundMarioItem')[0].play();
         } else if (perso.nom == "Sonic") {
-            perso.spriteSrc = 'sprite/form/' + perso.nom + 'Form' + sonicArmementPossible.indexOf(perso.arme) + '.png';
+            perso.spriteSrc = '../sprite/form/' + perso.nom + 'Form' + sonicArmementPossible.indexOf(perso.arme) + '.png';
             $('#soundSonicItem')[0].play();
         }
 
@@ -156,4 +187,13 @@
         $('td:nth('+ newBoxPosition +')').append(image);
     }
 
-
+    //fonction qui renvoie l'autre personnage 
+    function otherPlayer(perso){
+        if (perso.nom == "Mario"){
+            var otherPlayer = joueur2;
+        }
+        else if (perso.nom == "Sonic"){
+            var otherPlayer = joueur1;
+        } 
+        return otherPlayer;
+    }
