@@ -105,7 +105,7 @@ function atkAnim(spriteAtk,attaquant,adversaire){
     },500, function(){
        $("img").remove('img.atkSprite');
         $('#soundAtk')[0].play();                
-        animDegatPerso(adversaire);         
+        animDegatPerso(adversaire);          
         dialBattle(attaquant,degatCalc(adversaire, attaquant.degat, attacked));
         attacked = true;
         verifPtsVie();
@@ -114,7 +114,8 @@ function atkAnim(spriteAtk,attaquant,adversaire){
     }
     else{
        $('#soundAtk')[0].play();                
-        animDegatPerso(adversaire);         
+        animDegatPerso(adversaire);
+        
         dialBattle(attaquant,degatCalc(adversaire, attaquant.degat, attacked));
         attacked = true;
         verifPtsVie();

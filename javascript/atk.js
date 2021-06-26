@@ -48,12 +48,11 @@ function possibleAtk(perso){
 }
 
 //fonction qui execute une attque si l'adversaire est a porté de frappe
-function atk(perso,adversaire){    
-    var attacked = false;
-    $('.atkPossible').click(function () {       
-        if ($(this).hasClass('atkPossible') && perso.actif === true && attacked === false) {
-            if($(this).children().is('#' + adversaire.nom)){
-                
+function atk(perso,adversaire){ 
+    $('.atkPossible').off("click");
+    $('.atkPossible').click(function () {  
+        if ($(this).hasClass('atkPossible') && perso.actif === true) {
+            if($(this).children().is('#' + adversaire.nom)){                
                 if(perso.nom == "Mario"){
                     var ficherAnimArme = '../sprite/atk/'+perso.nom+'W'+(marioArmementPossible.indexOf(perso.arme)+1)+'.png'
                 }
@@ -63,8 +62,10 @@ function atk(perso,adversaire){
                 
                 $('.atkPossible').removeClass('atkPossible');
                 attacked = true;
-                $('#soundAtk'+perso.nom)[0].play();                
-                $('#soundAtk'+perso.nom).bind("ended", function(){ 
+                $('#soundAtk'+perso.nom)[0].play(); 
+                
+                $('#soundAtk'+perso.nom).off("ended");
+                $('#soundAtk'+perso.nom).bind("ended", function(){                    
                     atkAnim(ficherAnimArme,perso,adversaire);                     
                     actionDone.push('atk');
                     coloringActionMenu(perso,actionDone);                    

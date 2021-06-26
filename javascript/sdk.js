@@ -15,3 +15,27 @@ function arrayRand(array) {
     } 
     return arrayGrille = arrayAleatoir;   
 }
+
+//fonction qui renvoie la date et l'heure de maintenant (utile dans un tchat)
+function getDate() {
+            var now = new Date();
+            var h = now.getHours(),
+                min = now.getMinutes(),
+                s = now.getSeconds(),
+                y = now.getFullYear(),
+                m = parseInt(now.getMonth()) + 1,
+                d = now.getDate();
+
+            if (min < 10) {
+                min = '0' + min;
+            }
+            if (s < 10) {
+                s = '0' + s;
+            }
+            if (m < 10) {
+                m = '0' + m;
+            }
+            
+           var date = d+'/'+m+'/'+y+' à '+h+':'+min+' ';
+           return date;
+}
